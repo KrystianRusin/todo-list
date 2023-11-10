@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log({title:"test",desc:"test",due:"test",prio:"low",isDone:!1})})();
