@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log({title:"test",desc:"test",due:"test",prio:"low",isDone:!1})})();
+(()=>{"use strict";console.log({title:"test",desc:"test",due:"test",prio:"low",isDone:!1}),document.addEventListener("DOMContentLoaded",(function(){(()=>{const t=document.querySelector(".add-task-btn"),e=document.querySelector(".input-modal");t.addEventListener("click",(function(){e.showModal()}))})()}))})();
