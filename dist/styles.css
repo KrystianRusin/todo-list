@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    padding-left: 64px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 20px;
+    font-family: 'Fuzzy Bubbles', sans-serif;
+    background-color: #14b8a6;
+    color: white;
+    width: 100%;
+}
