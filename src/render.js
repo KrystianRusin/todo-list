@@ -1,5 +1,11 @@
 import { todoFactory } from "./todo"
 
+
+const renderProject = (proj) => {
+    renderTodoList(proj.todoList)
+}
+
+
 const renderTodoList = (todoList) => {
     const todoF = todoFactory();
     const container = document.querySelector(".main-content")
@@ -45,4 +51,4 @@ const renderTodo = (todo) => {
 
 
 
-export { renderTodoList, renderTodo }
+export { renderTodoList, renderTodo, renderProject }

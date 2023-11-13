@@ -1,11 +1,12 @@
 const todoFactory = () => {
-    const createTodo = (title, desc, due, prio, isDone) => {
-        return { title, desc, due, prio, isDone };
+    const createTodo = (title, desc, due, prio, isDone, id) => {
+        return { title, desc, due, prio, isDone, id};
     };
 
     const getTitle = (t) => {
         return t.title
     }
+
 
     const getDesc = (t) => {
         return t.desc
@@ -36,6 +37,10 @@ const todoFactory = () => {
 
     }
 
+    const getId = (t) => {
+        return t.id
+    }
+
     return {
         createTodo,
         getTitle,
@@ -44,7 +49,8 @@ const todoFactory = () => {
         getPrio,
         setPrio,
         getIsDone,
-        setIsDone
+        setIsDone,
+        getId
     };
 };
 
