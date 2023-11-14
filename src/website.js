@@ -5,6 +5,10 @@ import { projectFactory } from "./projects";
 const initWebsite = () => {
     const addTask = document.querySelector(".add-task-btn")
     const addDialog = document.querySelector(".input-modal")
+    for (let i = 0; i< localStorage.length; i++){
+        let key = localStorage.key(i)
+        renderProject(JSON.parse(localStorage.getItem(key)))
+    }
     const todo = todoFactory();
     const todo1 = todo.createTodo("test", "test", "test", "low", false);
     const todoList = [todo1]
@@ -29,20 +33,10 @@ const initWebsite = () => {
     addProject.addEventListener("click", function (event) {
         event.preventDefault()
         let projectName = document.getElementById("project-name").value
-        let test1 = todo.createTodo("test", "test", "test", "test", false, Math.floor(Math.random()*10000))
-        let test2Id = Math.floor(Math.random()*10000)
-        let test2 = todo.createTodo("test2", "test2", "test2", "test2", false, test2Id)
-        let newProj = project.createProject(projectName, Math.floor(Math.random()*10000), [test1, test2])
+        let newProj = project.createProject(projectName, Math.floor(Math.random()*10000), [])
         localStorage.setItem(projectName, JSON.stringify(newProj))
         renderProject(newProj)
-        console.log(localStorage.getItem(projectName))
-        //Render project on project list
-        //implement editing list of todos
-        
     })
-
-
-
 }
 
 export { initWebsite }

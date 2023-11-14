@@ -1,7 +1,13 @@
 import { todoFactory } from "./todo"
+import { projectFactory } from "./projects"
 
 
 const renderProject = (proj) => {
+    const projectF = projectFactory()
+    const projectList = document.getElementById("project-list")
+    const pLi = document.createElement("li")
+    pLi.innerHTML = proj.name
+    projectList.append(pLi)
     renderTodoList(proj.todoList)
 }
 
@@ -11,7 +17,7 @@ const renderTodoList = (todoList) => {
     const container = document.querySelector(".main-content")
     todoList.forEach(todo => {
        renderTodo(todo)
-    });
+   });
 }
 
 const renderTodo = (todo) => {
