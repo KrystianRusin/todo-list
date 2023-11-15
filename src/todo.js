@@ -1,5 +1,6 @@
 const todoFactory = () => {
     const createTodo = (title, desc, due, prio, isDone, id) => {
+        id = Math.floor(Math.random()*10000)
         return { title, desc, due, prio, isDone, id};
     };
 

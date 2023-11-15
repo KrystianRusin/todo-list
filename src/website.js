@@ -32,31 +32,25 @@ const initWebsite = () => {
     addProject.addEventListener("click", function (event) {
         event.preventDefault()
         let projectName = document.getElementById("project-name").value
-        let projectId = Math.floor(Math.random()*10000)
-        let newProj = project.createProject(projectName, projectId, [])
+        let newProj = project.createProject(projectName, [])
         localStorage.setItem(projectName, JSON.stringify(newProj))
         renderProject(newProj)
-        setRemoveBtn(projectId)
+        console.log(newProj)
+        setRemoveBtn(newProj.id)
     })
 
-    if(localStorage.length > 0){
-        for(let i = 0; i<localStorage.length;i++){
-            let curr = JSON.parse(localStorage.getItem(localStorage.key(i)))
-            let projectId = curr.id
-            setRemoveBtn(projectId)
+    const projectListContainer = document.getElementById("project-list")
+    projectListContainer.addEventListener("click", function(event) {
+        if(event.target.tagName === 'BUTTON' && event.target.parentElement.tagName === "LI"){
+            removeProjectHandler(event.target.getAttribute('data-project-id'))
         }
-        const removeBtnList = document.querySelectorAll(".remove-btn")
-    }
+    })
 }
 
-const setRemoveBtn = (projectId) => {
-    const removeBtn = document.querySelector(`[data-project-id="${projectId}"]`)
-    removeBtn.addEventListener("click", function(){
-        let projectId = removeBtn.dataset.projectId;
-        let index = findIndexByProjectId(projectId)
-        localStorage.removeItem(localStorage.key(index))
-        renderProjectList()
-    })
+const removeProjectHandler = (projectId) => {
+    let index = findIndexByProjectId(projectId)
+    localStorage.removeItem(localStorage.key(index))
+    renderProjectList()
 }
 
 const findIndexByProjectId = (projectId) => {

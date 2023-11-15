@@ -4,7 +4,8 @@ const projectFactory = () => {
 
     const todoF = todoFactory
 
-    const createProject = (name, id, todoList) => {
+    const createProject = (name, todoList, id) => {
+        id = Math.floor(Math.random()*10000)
         return {name, id, todoList}
     }
 

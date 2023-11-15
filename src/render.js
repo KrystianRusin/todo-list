@@ -66,6 +66,11 @@ const renderTodo = (todo) => {
     todoDone.classList.add("todo-done")
     todoContainer.appendChild(todoDone)
 
+    const removeBtn = document.createElement("button")
+    removeBtn.dataset.id = todoF.getId(todo)
+    removeBtn.innerHTML = "X"
+    todoContainer.appendChild(removeBtn)
+
     container.appendChild(todoContainer)
 }
 
