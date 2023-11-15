@@ -6,9 +6,23 @@ const renderProject = (proj) => {
     const projectF = projectFactory()
     const projectList = document.getElementById("project-list")
     const pLi = document.createElement("li")
-    pLi.innerHTML = proj.name
+    const removeBtn = document.createElement("button")
+    removeBtn.classList.add("remove-btn")
+    removeBtn.innerHTML = "X"
+    removeBtn.dataset.projectId = proj.id
+    pLi.innerHTML = projectF.getName(proj)
+    pLi.appendChild(removeBtn)
     projectList.append(pLi)
     renderTodoList(proj.todoList)
+}
+
+const renderProjectList = () => {
+    const projectList = document.getElementById("project-list")
+    projectList.innerHTML = ""
+    for (let i = 0; i< localStorage.length; i++){
+        let key = localStorage.key(i)
+        renderProject(JSON.parse(localStorage.getItem(key)))
+    }
 }
 
 
@@ -57,4 +71,4 @@ const renderTodo = (todo) => {
 
 
 
-export { renderTodoList, renderTodo, renderProject }
+export { renderTodoList, renderTodo, renderProject, renderProjectList }
