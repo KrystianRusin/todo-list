@@ -6,7 +6,7 @@ const projectFactory = () => {
 
     const createProject = (name, todoList, id) => {
         id = Math.floor(Math.random()*10000)
-        return {name, id, todoList}
+        return {name, todoList, id}
     }
 
     const getName = (proj) => {
@@ -22,6 +22,7 @@ const projectFactory = () => {
     }
 
     const addTodo = (proj, todo) => {
+        console.log(proj)
         proj.todoList.push(todo)
     }
 

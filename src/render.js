@@ -11,6 +11,7 @@ const renderProject = (proj) => {
     removeBtn.innerHTML = "X"
     removeBtn.dataset.projectId = proj.id
     pLi.innerHTML = projectF.getName(proj)
+    pLi.dataset.projectId = proj.id
     pLi.appendChild(removeBtn)
     projectList.append(pLi)
     renderTodoList(proj.todoList)

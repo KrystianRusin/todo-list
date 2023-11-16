@@ -2,9 +2,15 @@ import { renderTodoList, renderTodo, renderProject, renderProjectList } from "./
 import { todoFactory } from "./todo";
 import { projectFactory } from "./projects";
 
+let currProjectId = 0
+
 const initWebsite = () => {
     const addTask = document.querySelector(".add-task-btn")
     const addDialog = document.querySelector(".input-modal")
+
+    //TODO: Add project selection function
+    //TODO: Add default project
+    //TODO: adding todo to selected project and default project functionality
     
     renderProjectList()
 
@@ -17,6 +23,14 @@ const initWebsite = () => {
     })
     renderTodoList(todoList)
 
+    const todoContainer = document.querySelector(".main-content")
+    todoContainer.addEventListener("click", function(event) {
+        if (event.target.tagName === "BUTTON" && event.target.parentElement.tagName === "DIV"){
+            const todoId = event.target.getAttribute('data-id');
+            console.log("removed")
+        }
+    })
+
     const taskSubmit = document.getElementById("add-task-submit")
     taskSubmit.addEventListener("click", function (event) {
         event.preventDefault()
@@ -24,7 +38,8 @@ const initWebsite = () => {
         let desc = document.getElementById("desc").value
         let date = document.getElementById("date").value
         let prio = document.getElementById("priority").value
-        renderTodo(todo.createTodo(title, desc, date, prio, false, Math.floor(Math.random()*10000)))
+        let newTodo = todo.createTodo(title, desc, date, prio, false, Math.floor(Math.random()*10000))
+        addTodo(newTodo)
     })
 
     const addProject = document.getElementById("add-project-btn")
@@ -34,9 +49,7 @@ const initWebsite = () => {
         let projectName = document.getElementById("project-name").value
         let newProj = project.createProject(projectName, [])
         localStorage.setItem(projectName, JSON.stringify(newProj))
-        renderProject(newProj)
-        console.log(newProj)
-        setRemoveBtn(newProj.id)
+        renderProjectList()
     })
 
     const projectListContainer = document.getElementById("project-list")
@@ -44,7 +57,25 @@ const initWebsite = () => {
         if(event.target.tagName === 'BUTTON' && event.target.parentElement.tagName === "LI"){
             removeProjectHandler(event.target.getAttribute('data-project-id'))
         }
+
+        if(event.target.tagName === 'LI' && event.target.parentElement.tagName === "UL"){
+            setCurrProject(event.target.getAttribute('data-project-id'))
+            renderTodoList(JSON.parse(localStorage.getItem(localStorage.key(findIndexByProjectId(currProjectId)))).todoList)
+        }
     })
+}
+
+const addTodo = (todo) => {
+    let index = findIndexByProjectId(currProjectId)
+    let key = localStorage.key(index)
+    let project = JSON.parse(localStorage.getItem(key))
+    projectFactory().addTodo(project, todo)
+    localStorage.setItem(key, JSON.stringify(project))
+    console.log(localStorage.getItem(key))
+}
+
+const setCurrProject = (projectId) =>{
+    currProjectId = projectId
 }
 
 const removeProjectHandler = (projectId) => {
