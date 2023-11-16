@@ -6,13 +6,16 @@ const renderProject = (proj) => {
     const projectF = projectFactory()
     const projectList = document.getElementById("project-list")
     const pLi = document.createElement("li")
-    const removeBtn = document.createElement("button")
-    removeBtn.classList.add("remove-btn")
-    removeBtn.innerHTML = "X"
-    removeBtn.dataset.projectId = proj.id
     pLi.innerHTML = projectF.getName(proj)
     pLi.dataset.projectId = proj.id
-    pLi.appendChild(removeBtn)
+    if (proj.id != 0){
+        const removeBtn = document.createElement("button")
+        removeBtn.classList.add("remove-btn")
+        removeBtn.innerHTML = "X"
+        removeBtn.dataset.projectId = proj.id
+        pLi.appendChild(removeBtn)
+    }
+    
     projectList.append(pLi)
     renderTodoList(proj.todoList)
 }
@@ -30,6 +33,7 @@ const renderProjectList = () => {
 const renderTodoList = (todoList) => {
     const todoF = todoFactory();
     const container = document.querySelector(".main-content")
+    container.innerHTML = ""
     todoList.forEach(todo => {
        renderTodo(todo)
    });

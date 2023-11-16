@@ -5,7 +5,9 @@ const projectFactory = () => {
     const todoF = todoFactory
 
     const createProject = (name, todoList, id) => {
-        id = Math.floor(Math.random()*10000)
+        if(id == null){
+            id = Math.floor(Math.random()*10000)
+        }
         return {name, todoList, id}
     }
 
