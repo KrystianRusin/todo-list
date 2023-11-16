@@ -32,7 +32,7 @@ const initWebsite = () => {
     todoContainer.addEventListener("click", function(event) {
         if (event.target.tagName === "BUTTON" && event.target.parentElement.tagName === "DIV"){
             const todoId = event.target.getAttribute('data-id');
-            console.log("removed")
+            removeTodoHandler(todoId)
         }
     })
 
@@ -46,7 +46,7 @@ const initWebsite = () => {
         let date = document.getElementById("date").value
         let prio = document.getElementById("priority").value
         let newTodo = todoFactory().createTodo(title, desc, date, prio, false, Math.floor(Math.random()*10000))
-        addTodo(newTodo)
+        addTodoHandler(newTodo)
     })
 
     const addProject = document.getElementById("add-project-btn")
@@ -77,7 +77,7 @@ const initWebsite = () => {
     })
 }
 
-const addTodo = (todo) => {
+const addTodoHandler = (todo) => {
     let key = currProjectId
     let project = JSON.parse(localStorage.getItem(key))
     projectFactory().addTodo(project, todo)
@@ -87,7 +87,19 @@ const addTodo = (todo) => {
         projectFactory().addTodo(defaultProject, todo)
         localStorage.setItem("0", JSON.stringify(defaultProject))
     }   
+    renderTodoList(project.todoList)
+}
+
+const removeTodoHandler = (todoId) => {
+    let key = currProjectId
+    let project = JSON.parse(localStorage.getItem(key))
+    projectFactory().setTodoList(project, projectFactory().removeTodo(project, todoId))
     localStorage.setItem(key, JSON.stringify(project))
+    if (key != 0){
+        let defaultProject = JSON.parse(localStorage.getItem("0"))
+        projectFactory().setTodoList(defaultProject, projectFactory().removeTodo(defaultProject, todoId))
+        localStorage.setItem("0", JSON.stringify(defaultProject))
+    }   
     renderTodoList(project.todoList)
 }
 

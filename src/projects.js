@@ -23,15 +23,16 @@ const projectFactory = () => {
         return proj.todoList
     }
 
+    const setTodoList = (proj, newTodoList) => {
+        proj.todoList = newTodoList
+    }
+
     const addTodo = (proj, todo) => {
-        console.log(proj)
         proj.todoList.push(todo)
     }
 
     const removeTodo = (proj, todoId) => {
-        let temp = proj.todoList.filter(todo => todo.id !== todoId)
-        proj.todoList = temp
-        console.log(proj.todoList)
+        return proj.todoList.filter(todo => todo.id != todoId)
     }
 
     return {
@@ -40,7 +41,8 @@ const projectFactory = () => {
         getId,
         getTodoList,
         addTodo,
-        removeTodo
+        removeTodo,
+        setTodoList
     }
 
 }
