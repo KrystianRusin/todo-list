@@ -2,8 +2,6 @@ import { todoFactory } from "./todo"
 
 const projectFactory = () => {
 
-    const todoF = todoFactory
-
     const createProject = (name, todoList, id) => {
         if(id == null){
             id = Math.floor(Math.random()*10000)

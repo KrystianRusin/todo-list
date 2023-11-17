@@ -29,7 +29,7 @@ const todoFactory = () => {
         return t.isDone
     }
 
-    const setIsDone = (t, ) => {
+    const setIsDone = (t) => {
         if(t.isDone){
             t.isDone = false
         } else {

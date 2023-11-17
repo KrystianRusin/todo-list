@@ -66,9 +66,15 @@ const renderTodo = (todo) => {
     todoPrio.classList.add("todo-prio")
     todoContainer.appendChild(todoPrio)
 
-    const todoDone = document.createElement("p")
-    todoDone.innerHTML = todoF.getIsDone(todo)
+    const todoDone = document.createElement("INPUT")
+    todoDone.setAttribute("type", "checkbox")
+    if(todoF.getIsDone(todo)){
+        todoDone.checked = true
+    }else {
+        todoDone.checked = false
+    }
     todoDone.classList.add("todo-done")
+    todoDone.dataset.id = todoF.getId(todo)
     todoContainer.appendChild(todoDone)
 
     const removeBtn = document.createElement("button")

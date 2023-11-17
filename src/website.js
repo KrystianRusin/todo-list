@@ -8,15 +8,15 @@ const initWebsite = () => {
     const addTask = document.querySelector(".add-task-btn")
     const addDialog = document.querySelector(".input-modal")
 
-    //TODO: adding todo to selected project and default project functionality
     //TODO: add remove todo and checkbox todo for is Done
+    //TODO: finish isdonehandler
 
     const defaultProjectKey = 0;
-    let defaulProject = JSON.parse(localStorage.getItem(defaultProjectKey))
+    let defaultProject = JSON.parse(localStorage.getItem(defaultProjectKey))
 
-    if(!defaulProject) {
-        defaulProject = projectFactory().createProject("All", [], 0)
-        localStorage.setItem(defaultProjectKey, JSON.stringify(defaulProject));
+    if(!defaultProject) {
+        defaultProject = projectFactory().createProject("All", [], 0)
+        localStorage.setItem(defaultProjectKey, JSON.stringify(defaultProject));
     }
     
     renderProjectList()
@@ -24,15 +24,17 @@ const initWebsite = () => {
     addTask.addEventListener("click", function () {
         addDialog.showModal()
     })
-    console.log(JSON.parse(localStorage.getItem(0)))
     let defaultProj = JSON.parse(localStorage.getItem(0))
-    renderTodoList(projectFactory().getTodoList(defaulProject))
+    renderTodoList(projectFactory().getTodoList(defaultProject))
 
     const todoContainer = document.querySelector(".main-content")
     todoContainer.addEventListener("click", function(event) {
+        const todoId = event.target.getAttribute('data-id');
         if (event.target.tagName === "BUTTON" && event.target.parentElement.tagName === "DIV"){
-            const todoId = event.target.getAttribute('data-id');
             removeTodoHandler(todoId)
+        }
+        if (event.target.tagName === "INPUT" && event.target.parentElement.tagName === "DIV"){
+            setDoneHandler(todoId)
         }
     })
 
@@ -71,7 +73,6 @@ const initWebsite = () => {
         if(event.target.tagName === 'LI' && event.target.parentElement.tagName === "UL"){
             setCurrProject(event.target.getAttribute('data-project-id'))
             let currProject = JSON.parse(localStorage.getItem(currProjectId))
-            console.log(currProject)
             renderTodoList(projectFactory().getTodoList(currProject))
         }
     })
@@ -101,6 +102,28 @@ const removeTodoHandler = (todoId) => {
         localStorage.setItem("0", JSON.stringify(defaultProject))
     }   
     renderTodoList(project.todoList)
+}
+
+const setDoneHandler = (todoId) => {
+
+    let key = currProjectId;
+    let project = JSON.parse(localStorage.getItem(key));
+    let currTodoList = project.todoList
+    let todoIndex = findTodoById(todoId, currTodoList);
+    todoFactory().setIsDone(currTodoList[todoIndex]);
+    projectFactory().setTodoList(project, currTodoList);
+    localStorage.setItem(key, JSON.stringify(project));
+    renderTodoList(currTodoList);
+    console.log(currTodoList)
+}   
+
+const findTodoById = (todoId, currTodoList) => {
+    console.log(todoId)
+    for(let i =0; i<currTodoList.length; i++){
+        if (currTodoList[i].id == todoId){
+            return i
+        }
+    }
 }
 
 const setCurrProject = (projectId) =>{
