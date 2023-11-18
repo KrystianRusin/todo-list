@@ -41,13 +41,23 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.add-task-btn {
+    font-size: 38px;
+    color: white;
+    background-color: #14b8a6;;
+    height: 50px;
+    width: 50px;
+    border: thin solid darkgray;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .sidebar ul {
     list-style: none;
     margin-top: 16px;
-    margin-left: 64px;
     font-size: 20px;
     font-family: 'Alata', sans-serif;
 }
@@ -73,7 +83,7 @@
     display: flex;
 }
 
-.main-content {
+.main-content-container {
     grid-area: main-content;
     display: flex;
     flex-direction: column;
@@ -89,4 +99,24 @@
     display: flex;
     justify-content: space-around;
     box-shadow: 2px 2px 4px 4px rgb(172, 171, 171);
+}
+
+#add-project-form,
+.show-form-btn {
+    margin-top: 32px;
+}
+
+
+#add-project-form {
+    display: none;
+}
+
+.show-form-btn {
+    background-color: #14b8a6;
+    color: white;
+    font-family: 'Alata', sans-serif;;
+    font-size: 18px;
+    height: 50px;
+    width: 125px;
+    display: block;
 }

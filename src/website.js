@@ -8,9 +8,6 @@ const initWebsite = () => {
     const addTask = document.querySelector(".add-task-btn")
     const addDialog = document.querySelector(".input-modal")
 
-    //TODO: add remove todo and checkbox todo for is Done
-    //TODO: finish isdonehandler
-
     const defaultProjectKey = 0;
     let defaultProject = JSON.parse(localStorage.getItem(defaultProjectKey))
 
@@ -38,8 +35,6 @@ const initWebsite = () => {
         }
     })
 
-    
-
     const taskSubmit = document.getElementById("add-task-submit")
     taskSubmit.addEventListener("click", function (event) {
         event.preventDefault()
@@ -55,6 +50,8 @@ const initWebsite = () => {
     const project = projectFactory();
 
 
+    const showFormBtn = document.querySelector(".show-form-btn")
+    const addProjectForm = document.getElementById("add-project-form")
 
     addProject.addEventListener("click", function (event) {
         event.preventDefault()
@@ -62,6 +59,8 @@ const initWebsite = () => {
         let newProj = project.createProject(projectName, [])
         localStorage.setItem(newProj.id, JSON.stringify(newProj))
         renderProjectList()
+        showFormBtn.style.display = 'block'
+        addProjectForm.style.display = 'none'
     })
 
     const projectListContainer = document.getElementById("project-list")
@@ -74,6 +73,14 @@ const initWebsite = () => {
             setCurrProject(event.target.getAttribute('data-project-id'))
             let currProject = JSON.parse(localStorage.getItem(currProjectId))
             renderTodoList(projectFactory().getTodoList(currProject))
+        }
+    })
+
+    
+    showFormBtn.addEventListener("click", function (){
+        showFormBtn.style.display = (showFormBtn.style.display === 'none') ? 'block' : 'none'
+        if (addProjectForm.style.display === '' || addProjectForm.style.display === 'none'){
+            addProjectForm.style.display = 'block';
         }
     })
 }
