@@ -15,4 +15,4 @@ Features to be implemented:
   - Sorting projects by creation order
   - Improving styling and layout
 
-[Live App] (https://krystianrusin.github.io/todo-list)
+[Live App](https://krystianrusin.github.io/todo-list)
