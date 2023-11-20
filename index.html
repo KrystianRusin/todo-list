@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WillDo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>willDo</h1>
+        </div>
+        <div class="content-container">
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <ul id="project-list">
+                        </ul>
+                    </li>
+                    <li>
+                        <button class="show-form-btn">Add Project</button>
+                        <form id="add-project-form" action="">
+                            <label for="project-name">Project Name</label>
+                            <input type="text" name="project-name" id="project-name">
+                            <button type = "submit" id="add-project-btn">Add Project</button>
+                        </form>
+                        
+                    </li>
+                </ul>
+            </div>
+            
+            <dialog class="input-modal">
+                <form action="dialog" class="input-form">
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title">
+                    </div>
+
+                    <div>
+                        <label for="desc">desc</label>
+                        <input type="text" name="desc" id="desc">
+                    </div>
+
+                    <div>
+                        <label for="date">date</label>
+                        <input type="date" name="date" id="date">
+                    </div>
+
+                    <div>
+                        <label for="priority">priority</label>
+                        <input type="text" name="priority" id="priority">
+                    </div>
+
+                    <button type="submit" id="add-task-submit">Add Task</button>
+                </form>
+            </dialog>
+            <div class="main-content-container">
+                <button class="add-task-btn">+</button>
+                <div class="main-content">
+               
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
