@@ -18,6 +18,9 @@ const initWebsite = () => {
     
     renderProjectList()
 
+    let currRenderedProject = document.querySelector(`[data-project-id="${currProjectId}"]`)
+    currRenderedProject.classList.add("active-project")
+
     addTask.addEventListener("click", function () {
         addDialog.showModal()
     })
@@ -44,6 +47,7 @@ const initWebsite = () => {
         let prio = document.getElementById("priority").value
         let newTodo = todoFactory().createTodo(title, desc, date, prio, false, Math.floor(Math.random()*10000))
         addTodoHandler(newTodo)
+        addDialog.close()
     })
 
     const addProject = document.getElementById("add-project-btn")
@@ -69,9 +73,13 @@ const initWebsite = () => {
             removeProjectHandler(event.target.getAttribute('data-project-id'))
         }
 
-        if(event.target.tagName === 'LI' && event.target.parentElement.tagName === "UL"){
+        if(event.target.tagName === 'H4' && event.target.parentElement.tagName === "LI"){
+            currRenderedProject = document.querySelector(`[data-project-id="${currProjectId}"]`)
+            currRenderedProject.classList.remove("active-project")
             setCurrProject(event.target.getAttribute('data-project-id'))
             let currProject = JSON.parse(localStorage.getItem(currProjectId))
+            currRenderedProject = document.querySelector(`[data-project-id="${currProjectId}"]`)
+            currRenderedProject.classList.add("active-project")
             renderTodoList(projectFactory().getTodoList(currProject))
         }
     })

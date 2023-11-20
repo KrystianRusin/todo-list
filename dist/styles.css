@@ -37,11 +37,12 @@
     grid-area: sidebar;
     background-color: #ccfbf1;
     height: 100vh;
-    width: 300px;
+    width: 236px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 64px;
 }
 
 .add-task-btn {
@@ -119,4 +120,38 @@
     height: 50px;
     width: 125px;
     display: block;
+}
+
+.remove-btn {
+    background-color: #f0fdfa;
+    border: 0px;
+    width: 25px;
+    font-size: 16px;
+    font-weight: bold;  
+    cursor: pointer;
+
+}
+
+.active-project h4{
+    border-bottom: 1px solid black;
+}
+
+
+.project-element {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-element h4 {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.project-remove-btn {
+    width: 25px;
+    border: 0px;
+    background-color: #ccfbf1;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
 }

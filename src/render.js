@@ -6,11 +6,15 @@ const renderProject = (proj) => {
     const projectF = projectFactory()
     const projectList = document.getElementById("project-list")
     const pLi = document.createElement("li")
-    pLi.innerHTML = projectF.getName(proj)
+    pLi.classList.add("project-element")
+    const projectName = document.createElement("h4")
+    projectName.innerHTML = projectF.getName(proj)
+    projectName.dataset.projectId = proj.id
+    pLi.appendChild(projectName)
     pLi.dataset.projectId = proj.id
     if (proj.id != 0){
         const removeBtn = document.createElement("button")
-        removeBtn.classList.add("remove-btn")
+        removeBtn.classList.add("project-remove-btn")
         removeBtn.innerHTML = "X"
         removeBtn.dataset.projectId = proj.id
         pLi.appendChild(removeBtn)
@@ -78,6 +82,7 @@ const renderTodo = (todo) => {
     todoContainer.appendChild(todoDone)
 
     const removeBtn = document.createElement("button")
+    removeBtn.classList.add("remove-btn")
     removeBtn.dataset.id = todoF.getId(todo)
     removeBtn.innerHTML = "X"
     todoContainer.appendChild(removeBtn)
