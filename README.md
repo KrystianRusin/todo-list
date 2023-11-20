@@ -1,4 +1,4 @@
-# willDo: A Todo List app
+# WillDo: A Todo List app
 
 Features:
   - Save todos to localstorage
@@ -14,3 +14,5 @@ Features to be implemented:
   - Sorting todos by due date or priority
   - Sorting projects by creation order
   - Improving styling and layout
+
+[Live App] (https://krystianrusin.github.io/todo-list)
